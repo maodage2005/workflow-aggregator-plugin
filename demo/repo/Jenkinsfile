@@ -5,7 +5,8 @@ def servers
 stage 'Dev'
 node {
     checkout scm
-    servers = load 'servers.groovy'
+    echo workspace
+    servers = load workspace+'servers.groovy'
     mvn '-o clean package'
     dir('target') {stash name: 'war', includes: 'x.war'}
 }
